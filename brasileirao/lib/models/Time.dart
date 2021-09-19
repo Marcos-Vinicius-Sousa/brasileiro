@@ -12,5 +12,5 @@ class Time{
   Color cor;
   List<Titulo> titulos = [];
 
-  Time({this.nome, this.pontos, this.brasao, this.cor, this.titulos});
+  Time({this.nome, this.pontos, this.brasao, this.cor});
 }

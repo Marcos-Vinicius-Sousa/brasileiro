@@ -61,13 +61,11 @@ class _TimePageState extends State<TimePage> {
 
      final quantidade = widget.time.titulos.length;
 
-    return quantidade == 0
-        ? Container(
+    return quantidade == 0 ? Container(
           child: Center(
             child: Text("Nenhum título Ainda!"),
           ),
-        )
-        : ListView.separated(separatorBuilder: (_, __ ) => Divider(),
+        ) : ListView.separated(separatorBuilder: (_, __ ) => Divider(),
                               itemCount: quantidade,
                               itemBuilder: (BuildContext context, int index ){
                 return ListTile(
