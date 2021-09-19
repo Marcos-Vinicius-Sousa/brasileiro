@@ -7,13 +7,18 @@ class TimePage extends StatefulWidget {
   Time time;
   TimePage({Key key, this.time}) : super(key: key);
 
+
   @override
   _TimePageState createState() => _TimePageState();
 }
 
 class _TimePageState extends State<TimePage> {
+
+
   @override
   Widget build(BuildContext context) {
+
+
 
     return DefaultTabController(
       length: 2,
@@ -44,29 +49,33 @@ class _TimePageState extends State<TimePage> {
               Text("Pontos: ${widget.time.pontos}", style: TextStyle(fontSize: 25),)
             ],
           ),
+
           titulos()
+
         ],),
       ),
     );
   }
 
- Widget titulos(){
-    final quantidade = widget.time.titulos.length;
+  Widget titulos(){
+
+     final quantidade = widget.time.titulos.length;
 
     return quantidade == 0
         ? Container(
-          child: Center(child: Text("Nenhum título Ainda!"),)
-        ) 
-        : ListView.separated(itemBuilder: (BuildContext context, int index ){
-          return ListTile(
-            leading: Icon(Icons.grade),
-            title: Text(widget.time.titulos[index].campeonato),
-            trailing: Text(widget.time.titulos[index].ano),
+          child: Center(
+            child: Text("Nenhum título Ainda!"),
+          ),
+        )
+        : ListView.separated(separatorBuilder: (_, __ ) => Divider(),
+                              itemCount: quantidade,
+                              itemBuilder: (BuildContext context, int index ){
+                return ListTile(
+                  leading: Icon(Icons.grade),
+                  title: Text(widget.time.titulos[index].campeonato),
+                  trailing: Text(widget.time.titulos[index].ano),
           );
-    },
-                              separatorBuilder: (_, __ ) => Divider(),
-                              itemCount: quantidade);
-        
- }
+        });
+  }
 }
 
