@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import '../models/Time.dart';
 import '../models/Titulo.dart';
@@ -51,22 +51,20 @@ class _TimePageState extends State<TimePage> {
   }
 
  Widget titulos(){
+
     final quantidade = widget.time.titulos.length;
 
-    return quantidade == 0
-        ? Container(
-          child: Center(child: Text("Nenhum título Ainda!"),)
-        ) 
-        : ListView.separated(itemBuilder: (BuildContext context, int index ){
+    return quantidade == 0 ? Container(
+          child: Center(child: Text("Nenhum título Ainda!"))
+        ) : ListView.separated(itemBuilder: (BuildContext context, int index ){
           return ListTile(
             leading: Icon(Icons.grade),
             title: Text(widget.time.titulos[index].campeonato),
             trailing: Text(widget.time.titulos[index].ano),
           );
-    },
-                              separatorBuilder: (_, __ ) => Divider(),
-                              itemCount: quantidade);
-        
+        }, separatorBuilder: (_, __ ) => Divider(),
+           itemCount: quantidade);
+
  }
 }
 

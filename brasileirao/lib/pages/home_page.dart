@@ -1,7 +1,6 @@
 import 'package:brasileirao/models/Time.dart';
 import 'package:brasileirao/pages/home_controller.dart';
 import 'package:brasileirao/pages/time_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
