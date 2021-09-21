@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../models/Time.dart';
 import '../models/Titulo.dart';
+import 'add_titulo_page.dart';
 
 class TimePage extends StatefulWidget {
   Time time;
@@ -14,11 +15,25 @@ class TimePage extends StatefulWidget {
 
 class _TimePageState extends State<TimePage> {
 
+  tituloPage(){
+    Navigator.push(context, MaterialPageRoute(
+        builder: (_)=> AddTituloPage(time: widget.time, onSave: this.addTitulo)
+    ));
+  }
+
+  addTitulo(Titulo titulo){
+
+    setState(() {
+      widget.time.titulos.add(titulo);
+    });
+
+    Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Salvo com sucesso!")));
+
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
 
     return DefaultTabController(
       length: 2,
@@ -26,6 +41,7 @@ class _TimePageState extends State<TimePage> {
         appBar: AppBar(
           backgroundColor: widget.time.cor,
           title: Text(widget.time.nome),
+          actions: [IconButton( icon: Icon(Icons.add), onPressed: tituloPage)],
           bottom: TabBar(tabs: [
             Tab(
               icon: Icon(Icons.show_chart),
