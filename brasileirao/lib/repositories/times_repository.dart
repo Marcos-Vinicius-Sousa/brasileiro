@@ -14,6 +14,12 @@ class TimesRepository extends ChangeNotifier{
     notifyListeners();
   }
 
+  void editTitulo({Titulo titulo, String ano , String campeonato}){
+    titulo.campeonato = campeonato;
+    titulo.ano = ano;
+    notifyListeners();
+  }
+
   TimesRepository(){
     _times.addAll([
 

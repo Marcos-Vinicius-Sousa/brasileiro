@@ -1,6 +1,7 @@
 import 'package:brasileirao/pages/home_page.dart';
 import 'package:brasileirao/repositories/times_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Brasileirao',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

@@ -3,6 +3,7 @@ import 'package:brasileirao/pages/home_controller.dart';
 import 'package:brasileirao/pages/time_page.dart';
 import 'package:brasileirao/repositories/times_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,14 +41,15 @@ class _HomePageState extends State<HomePage> {
                     subtitle: Text("Titulos: ${tabela[time].titulos.length}"),
                     trailing: Text(tabela[time].pontos.toString()),
                     onTap: (){
-                    Navigator.push(context, MaterialPageRoute(
+                      Get.to(() => TimePage(
+                        key: Key(tabela[time].nome),
+                        time: tabela[time],
+                      ));
+                    /*Navigator.push(context, MaterialPageRoute(
                     builder: (_) => TimePage(key: Key(tabela[time].nome), time: tabela[time],),
-
-
-
-                    ));
-                    },
-                    );
+                          )); */
+                        },
+                      );
                     },
                     separatorBuilder: (_, __) => Divider(),
                     padding: EdgeInsets.all(16),

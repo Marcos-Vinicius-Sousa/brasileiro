@@ -1,6 +1,8 @@
+import 'package:brasileirao/pages/EditTituloPage.dart';
 import 'package:brasileirao/repositories/times_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../models/Time.dart';
 import '../models/Titulo.dart';
@@ -18,9 +20,11 @@ class TimePage extends StatefulWidget {
 class _TimePageState extends State<TimePage> {
 
   tituloPage(){
-    Navigator.push(context, MaterialPageRoute(
+    Get.to(()=>  AddTituloPage(time: widget.time));
+
+    /*Navigator.push(context, MaterialPageRoute(
         builder: (_)=> AddTituloPage(time: widget.time)
-    ));
+    )); */
   }
 
 
@@ -81,6 +85,12 @@ class _TimePageState extends State<TimePage> {
                   leading: Icon(Icons.grade),
                   title: Text(time.titulos[index].campeonato),
                   trailing: Text(time.titulos[index].ano),
+                  onTap: (){
+                    Get.to(
+                      EditTituloPage(titulo:time.titulos[index]),
+                      fullscreenDialog: true
+                    );
+                  },
           );
         });
   }
