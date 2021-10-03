@@ -1,5 +1,7 @@
+import 'package:brasileirao/repositories/times_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/Time.dart';
 import '../models/Titulo.dart';
 import 'add_titulo_page.dart';
@@ -17,20 +19,10 @@ class _TimePageState extends State<TimePage> {
 
   tituloPage(){
     Navigator.push(context, MaterialPageRoute(
-        builder: (_)=> AddTituloPage(time: widget.time, onSave: this.addTitulo)
+        builder: (_)=> AddTituloPage(time: widget.time)
     ));
   }
 
-  addTitulo(Titulo titulo){
-
-    setState(() {
-      widget.time.titulos.add(titulo);
-    });
-
-    Navigator.pop(context);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Salvo com sucesso!")));
-
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +67,8 @@ class _TimePageState extends State<TimePage> {
 
   Widget titulos(){
 
-     final quantidade = widget.time.titulos.length;
+    final time = Provider.of<TimesRepository>(context).times.firstWhere((t) => t.nome == widget.time.nome);
+    final quantidade = time.titulos.length;
 
     return quantidade == 0 ? Container(
           child: Center(
@@ -86,8 +79,8 @@ class _TimePageState extends State<TimePage> {
                               itemBuilder: (BuildContext context, int index ){
                 return ListTile(
                   leading: Icon(Icons.grade),
-                  title: Text(widget.time.titulos[index].campeonato),
-                  trailing: Text(widget.time.titulos[index].ano),
+                  title: Text(time.titulos[index].campeonato),
+                  trailing: Text(time.titulos[index].ano),
           );
         });
   }

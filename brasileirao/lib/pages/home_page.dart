@@ -1,7 +1,9 @@
 import 'package:brasileirao/models/Time.dart';
 import 'package:brasileirao/pages/home_controller.dart';
 import 'package:brasileirao/pages/time_page.dart';
+import 'package:brasileirao/repositories/times_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,28 +26,35 @@ class _HomePageState extends State<HomePage> {
         title: Text("Brasileirão"),
         centerTitle: true,
       ),
-      body: ListView.separated(
-          itemCount: controller.tabela.length,
-          itemBuilder: (BuildContext contexto, int time){
-            final List<Time>tabela = controller.tabela;
+      body: Consumer<TimesRepository>(
+        builder: (context, repositorio, child)
+        {
+          return ListView.separated(
+                  itemCount: repositorio.times.length,
+                    itemBuilder: (BuildContext contexto, int time){
+                    final List<Time>tabela = repositorio.times;
 
-            return ListTile(
-              leading: Image.network(tabela[time].brasao),
-              title: Text(tabela[time].nome),
-              trailing: Text(tabela[time].pontos.toString()),
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (_) => TimePage(key: Key(tabela[time].nome), time: tabela[time],),
+                    return ListTile(
+                    leading: Image.network(tabela[time].brasao),
+                    title: Text(tabela[time].nome),
+                    subtitle: Text("Titulos: ${tabela[time].titulos.length}"),
+                    trailing: Text(tabela[time].pontos.toString()),
+                    onTap: (){
+                    Navigator.push(context, MaterialPageRoute(
+                    builder: (_) => TimePage(key: Key(tabela[time].nome), time: tabela[time],),
 
 
 
-                ));
-              },
-            );
-          },
-          separatorBuilder: (_, __) => Divider(),
-        padding: EdgeInsets.all(16),
-          ),
+                    ));
+                    },
+                    );
+                    },
+                    separatorBuilder: (_, __) => Divider(),
+                    padding: EdgeInsets.all(16),
+                      );
+        }
+
+      ),
     );
   }
 }
