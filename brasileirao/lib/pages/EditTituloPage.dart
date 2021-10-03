@@ -32,6 +32,7 @@ class _EditTituloPageState extends State<EditTituloPage> {
       campeonato: _campeonato.text,
       ano: _ano.text
     );
+    Get.back();
   }
 
   @override

@@ -1,11 +1,11 @@
 import 'package:brasileirao/pages/EditTituloPage.dart';
 import 'package:brasileirao/repositories/times_repository.dart';
+import 'package:brasileirao/widgets/brasao.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../models/Time.dart';
-import '../models/Titulo.dart';
 import 'add_titulo_page.dart';
 
 class TimePage extends StatefulWidget {
@@ -56,7 +56,9 @@ class _TimePageState extends State<TimePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(padding: EdgeInsets.all(24),
-              child: Image.network(widget.time.brasao.replaceAll("40x40", "100x100")),
+              child: Brasao(
+                  image: widget.time.brasao,
+                  width:250),
               ),
               Text("Pontos: ${widget.time.pontos}", style: TextStyle(fontSize: 25),)
             ],
